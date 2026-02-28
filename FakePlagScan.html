@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plagiarism Checker - Final Correction</title>
+    <style>
+        :root {
+            --blue-primary: #2d7ff9;
+            --green-primary: #48bb78;
+            --border-color: #d1d9e6;
+            --text-secondary: #5f6368;
+            --bg-light-blue: #ecf3fa;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f1f4f9;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+        }
+
+        .app {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .tab.active {
+            color: var(--blue-primary);
+            border-bottom: 3px solid var(--blue-primary);
+        }
+
+        .pro-btn {
+            margin-left: auto;
+            background: #000;
+            color: #fff;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* TOP SECTION */
+        .top-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        /* SCAN PROPERTIES - GREEN TOPLINE */
+        .scan-props {
+            flex: 1;
+            border-top: 4px solid var(--green-primary);
+        }
+
+        /* PLAGIARISM BOX - BLUE TOPLINE */
+        .plagiarism-outer {
+            flex: 3;
+            background: var(--bg-light-blue);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--blue-primary);
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .inner-white-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        /* CIRCLE & LABELS */
+        .stat-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .circle-ui {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 5px solid #eef2f7;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .label-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* UNIQUE BOX */
+        .unique-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .u-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 6px solid #4db6ac;
+            margin-bottom: 5px;
+        }
+
+        /* BOTTOM SECTION - 50/50 SPLIT */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .editor {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 1.6;
+            outline: none;
+            white-space: pre-wrap;
+            background: #fff;
+        }
+
+        /* SCROLLBAR STYLING */
+        .editor::-webkit-scrollbar {
+            width: 8px;
+        }
+        .editor::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .editor::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .congrats-panel {
+            border: 1px solid var(--border-color);
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .congrats-panel img { 
+            width: 180px; 
+            margin-bottom: 10px;
+        }
+
+         /* FIXED BOTTOM LEFT LINK */
+        .go-back-link {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: var(--text-grey);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .go-back-link:hover {
+            background: #e5e7eb;
+            color: var(--text-black);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <div class="tabs">
+        <div class="tab active">Plagiarism Checker</div>
+        <div class="tab">Check Grammar</div>
+        <div class="tab">AI Detector</div>
+        <div class="pro-btn">👑 Pro</div>
+    </div>
+
+    <div class="top-row">
+        <div class="card scan-props">
+            <h3 style="margin-top:0; font-size: 18px;">Scan Properties</h3>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span>Sources Found</span><span>0</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span>Words</span><span id="word-count">155</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span>Characters</span><span id="char-count">1269</span>
+            </div>
+            <button style="background:#000; color:#fff; border:none; padding:8px 18px; border-radius:8px; margin-top:10px; font-weight:bold; cursor:pointer;">View More Details</button>
+        </div>
+
+        <div class="plagiarism-outer">
+            <div class="inner-white-card">
+                <div class="stat-group">
+                    <div class="circle-ui"></div>
+                    <div class="label-box">
+                        <span class="label-title">Plagiarism</span>
+                        <span class="label-value">0%</span>
+                    </div>
+                </div>
+                <div class="stat-group">
+                    <div class="circle-ui"></div>
+                    <div class="label-box">
+                        <span class="label-value" style="font-size: 16px;">0%</span>
+                        <span class="label-title">Exact Match</span>
+                    </div>
+                </div>
+                <div class="stat-group">
+                    <div class="circle-ui"></div>
+                    <div class="label-box">
+                        <span class="label-value" style="font-size: 16px;">0%</span>
+                        <span class="label-title">Partial Match</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="unique-card">
+                <div class="u-circle"></div>
+                <span class="label-title" style="font-weight: bold; color: #000;">Unique</span>
+                <span class="label-value">100%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-row">
+        <div class="editor" contenteditable="true" id="editor">
+--- ⚠️ ENTER YOUR CONTENT HERE THEN SCREENSHOT. ❗ ---
+        </div>
+
+        <div class="congrats-panel">
+            <img src="icon.png" alt="Illustration">
+        </div>
+    </div>
+</div>
+
+<br><br><br><br><br>
+
+<a href="index.html" class="go-back-link">← Go back</a>
+
+<script>
+    const editor = document.getElementById('editor');
+    const wordCount = document.getElementById('word-count');
+    const charCount = document.getElementById('char-count');
+
+    function updateStats() {
+        const text = editor.innerText.trim();
+        charCount.innerText = text.length;
+        wordCount.innerText = text ? text.split(/\s+/).length : 0;
+    }
+
+    editor.addEventListener('input', updateStats);
+    updateStats(); // Initial count
+</script>
+
+</body>
+</html>
